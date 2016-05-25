@@ -1,4 +1,11 @@
 <main>
   <h1>Hello from Angular 2 App with Webpack</h1>
   <img src="../../public/images/angular.png">
+  <button (click)="getMockTasks()">Get Mock Tasks</button>
+  <button (click)="getTasks()">Get Tasks</button>
+  <ul>
+      <li *ngFor="let task of tasks">
+          {{task.RequiredAction}}
+      </li>
+  </ul>
 </main>
