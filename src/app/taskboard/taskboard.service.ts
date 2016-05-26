@@ -12,19 +12,25 @@ export class TaskService {
 
     private tasksUrl = 'http://hli-intake.epam.com/clinician/TaskBoard/GetTasks?Rows=10&Page=1';
 
-    getMockTasks(): Promise<Task[]> {
-        return Promise.resolve(TASKS);
+    getMockTasks(): Observable<Task[]> {
+        return Observable.of({}).map(x => TASKS);
     }
 
-    getTasks(): Observable<any[]> {
+    getTasks(): Observable<Task[]> {
         return this.http
             .get(this.tasksUrl)
-            .map(this.extractData);
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
-    extractData(res: Response) {
+    private extractData(res: Response): Task[] {
         let body = res.json();
         console.log(body);
         return body.rows;
+    }
+
+    private handleError(error: any): Observable<Task[]> {
+        console.log(error);
+        return Observable.throw(')-: cannot get tasks :-(');
     }
 }

@@ -1,3 +1,6 @@
 export interface Task {
-    RequiredAction: string
+    RequiredAction: string;
+    DueIn: string;
+    Client: string;
+    Priority: number;
 }

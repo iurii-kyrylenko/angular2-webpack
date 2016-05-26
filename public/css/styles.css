@@ -1,6 +1,9 @@
 body {
-    background: #0147A7;
+    background: #3f7dba;
     color: #fff;
+}
+.logo img {
+  vertical-align: middle;
 }
 nav a {
   padding: 5px 10px;

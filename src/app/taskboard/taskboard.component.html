@@ -1,0 +1,20 @@
+<h3>
+    <span>TASKBOARD</span>
+    <button (click)="getMockTasks()">Get Mock Tasks</button>
+    <button (click)="getTasks()">Get Tasks</button>
+</h3>
+
+<table class="gridtable">
+    <tr *ngIf="tasks.length">
+        <th>Due In</th>
+        <th>Required Action</th>
+        <th>Client</th>
+        <th>Priority</th>
+    <tr>
+    <tr *ngFor="let task of tasks">
+        <td>{{task.DueIn}}</td>
+        <td>{{task.RequiredAction}}</td>
+        <td>{{task.Client}}</td>
+        <td>{{task.Priority}}</td>
+    </tr>
+</table>
