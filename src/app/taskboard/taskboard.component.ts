@@ -13,6 +13,11 @@ import { TaskService } from './taskboard.service';
             </li>
         </ul>
     `,
+    styles: [`
+        ul {
+            text-align: left
+        }
+    `],
     providers: [TaskService]})
 export class TaskboardComponent {
     tasks: Task[] = [];
