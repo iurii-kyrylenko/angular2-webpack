@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     template: `
-        <h3>CLIENTS</h3>
+        <h3>Task-2</h3>
     `,
 })
-export class ClientsComponent {}
+export class Task2Component {}

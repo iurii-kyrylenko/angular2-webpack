@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 
-import { ClientsComponent } from './clients/clients.component';
-import { TaskboardComponent } from './taskboard/taskboard.component';
+import { Task1Component } from './task-1/task1.component';
+import { Task2Component } from './task-2/task2.component';
 
 import '../../public/css/styles.css';
 
@@ -13,7 +13,7 @@ import '../../public/css/styles.css';
     directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-    {path: '/clients', name: 'Clients', component: ClientsComponent, useAsDefault: true},
-    {path: '/taskboard', name: 'Taskboard', component: TaskboardComponent},
+    {path: '/task1', name: 'Task1', component: Task1Component, useAsDefault: true},
+    {path: '/task2', name: 'Task2', component: Task2Component},
 ])
 export class AppComponent { }

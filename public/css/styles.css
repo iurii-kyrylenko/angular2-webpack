@@ -7,7 +7,9 @@ body {
 }
 nav a {
   padding: 5px 10px;
+  width:64px;
   text-decoration: none;
+  text-align: center;
   margin-top: 10px;
   display: inline-block;
   background-color: #eee;
