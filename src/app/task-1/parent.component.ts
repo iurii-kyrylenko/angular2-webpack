@@ -8,8 +8,8 @@ import { ChildComponent } from './child.component';
     template: `
         <div class="parent">
             <p>
-                <button (click)="addItem1()">+ m</button>
-                <button (click)="addItem2()">+ i</button>
+                <button id="add-mutable" (click)="addItem1()">+ m</button>
+                <button id="add-immutable" (click)="addItem2()">+ i</button>
             </p>
             <child [tag]="tag" [data]="data"></child>
         <div>
