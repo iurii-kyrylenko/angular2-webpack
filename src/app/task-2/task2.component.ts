@@ -31,6 +31,7 @@ export class Task2Component implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        clearTimeout(this.timer);
+        this.ds.stop();
+        clearInterval(this.timer);
     }
 }

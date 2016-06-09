@@ -32,6 +32,7 @@ export class ParentComponent implements OnInit {
 
     ngOnInit() {
         this.dataService.getData().subscribe(data => this.data = data);
+        //this.dataService.getDataPromise().then(data => this.data = data);
     }
 
     addItem1() {
