@@ -20,7 +20,7 @@ import { IItem } from './item';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildComponent {
-    private _data: IItem;
+    private _data: IItem[];
 
     @Input() tag: string;
 
