@@ -1,17 +1,18 @@
 /*
- * Thank to Brandon
+ * Based on
  * https://gist.github.com/brandonroberts/02cc07face25886fe142c4dbd8da1340
  */
 
-import {Injectable, NgModuleFactory, NgModuleFactoryLoader, Compiler, Type} from '@angular/core';
+import { Injectable, NgModuleFactory, NgModuleFactoryLoader, Compiler } from '@angular/core';
 
 class LoaderCallback {
-  constructor(public callback: any) {}
+  constructor(public callback: Function, public exportName = "default") {}
 }
 
-export let load: Type = (callback: Function) => {
-  return new LoaderCallback(callback);
+export function load(callback: Function, exportName?: string): any {
+  return new LoaderCallback(callback, exportName);
 };
+
 
 /**
  * NgModuleFactoryLoader that uses Promise to load NgModule type and then compiles them.
@@ -21,23 +22,23 @@ export let load: Type = (callback: Function) => {
 export class AsyncNgModuleLoader implements NgModuleFactoryLoader {
   constructor(private compiler: Compiler) {}
 
-  load(modulePath: string|LoaderCallback): Promise<NgModuleFactory<any>> {
+  load(modulePath: string | LoaderCallback): Promise<NgModuleFactory<any>> {
     if (modulePath instanceof LoaderCallback) {
-      let loader = (modulePath as LoaderCallback).callback();
+      const loaderCallback = (modulePath as LoaderCallback)
 
-      return Promise
-          .resolve(loader)
-          .then((type: any) => checkNotEmpty(type, '', ''))
-          .then((type: any) => this.compiler.compileModuleAsync(type));
+      return loaderCallback.callback()
+        .then((module: any) => module[loaderCallback.exportName])
+        .then((type: any) => checkNotEmpty(type, loaderCallback.exportName))
+        .then((type: any) => this.compiler.compileModuleAsync(type));
     }
 
     return Promise.resolve(null);
   }
 }
 
-function checkNotEmpty(value: any, modulePath: string, exportName: string): any {
+function checkNotEmpty(value: any, exportName: string): any {
   if (!value) {
-    throw new Error(`Cannot find '${exportName}' in '${modulePath}'`);
+    throw new Error(`Cannot find export "${exportName}" in module`);
   }
   return value;
 }
