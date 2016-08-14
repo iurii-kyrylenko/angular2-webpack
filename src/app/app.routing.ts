@@ -1,8 +1,10 @@
 import { Routes, RouterModule } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
+import { NgModuleFactoryLoader } from '@angular/core';
+import { AsyncNgModuleLoader, load } from './utils/async-ng-module-loader';
 import { Task1Component } from './task-1/task1.component';
-import { load } from './utils/async-ng-module-loader';
 
-export const routes: Routes = [
+const routes: Routes = [
     { path: '', redirectTo: 'task1', pathMatch: 'full' },
     { path: 'task1', component: Task1Component },
     { path: 'task2', loadChildren: load(() =>
@@ -16,4 +18,9 @@ export const routes: Routes = [
 
 export const routing = [
     RouterModule.forRoot(routes)
+];
+
+export const appRoutingProviders = [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: NgModuleFactoryLoader, useClass: AsyncNgModuleLoader }
 ];
