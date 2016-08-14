@@ -26,8 +26,7 @@ export class AsyncNgModuleLoader implements NgModuleFactoryLoader {
     if (modulePath instanceof LoaderCallback) {
       const loaderCallback = (modulePath as LoaderCallback)
 
-      return loaderCallback.callback()
-        .then((module: any) => module[loaderCallback.exportName])
+      return loaderCallback.callback(loaderCallback.exportName)
         .then((type: any) => checkNotEmpty(type, loaderCallback.exportName))
         .then((type: any) => this.compiler.compileModuleAsync(type));
     }
