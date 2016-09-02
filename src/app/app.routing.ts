@@ -1,5 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-// import { LocationStrategy, HashLocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Task1Component } from './task-1/task1.component';
 
 const routes: Routes = [
